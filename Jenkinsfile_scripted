@@ -1,3 +1,4 @@
+@Library('test_library') _ 
 
 
 node {
@@ -9,10 +10,17 @@ def runPipeline() {
     stage("outer stage") {
 		stage('Test library function') {
             echo "test 1"
+            script {
+                test_var.print_text()
+            }
 		}
 		
 		stage('Run test return library function') {
 		    echo "test 2"
+            script {
+                def a = test_var.return_string()
+                echo a
+            }
 		}
 	}
 }
