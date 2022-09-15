@@ -6,13 +6,14 @@ pipeline {
 	stages {
 	    
 		stage('Non Parallel Stage') {
+			
 		    agent {
 		        label "built-in"
 		    }
 			steps {
 				echo 'Doing a first thing'
 
-				echo test_var 
+				test_var()
 				
 			}
 		}
