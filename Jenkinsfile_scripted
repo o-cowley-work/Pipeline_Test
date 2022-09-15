@@ -6,7 +6,7 @@ node {
 
 
 def runPipeline() {
-    stage {
+    stage("outer stage") {
 		stage('Test library function') {
             echo "test 1"
 		}
