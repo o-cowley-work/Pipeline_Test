@@ -1,26 +1,58 @@
 @Library('test_library') _ 
 
+import groovy.transform.Field
+
+@Field def supportedProjects = []
+@Field def supportedPlatforms = []
+@Field def supportedRings = []
+
+
 
 node {
+    fillVariables()
     runPipeline() 
 }
 
 
 def runPipeline() {
-    stage("outer stage") {
-		stage('Test library function') {
-            echo "test 1"
-            script {
-                test_var.print_text()
+    
+    stage('Test library function') {
+        echo "test 1"
+        script {
+            test_var.print_text()
+        }
+    }
+    
+    stage('Run test return library function') {
+        echo "test 2"
+        script {
+            def a = test_var.return_string()
+            echo a
+        }
+    }
+
+    stage("testing the imports") {
+        script {
+            for(proj in supportedProjects) {
+                echo proj
             }
-		}
-		
-		stage('Run test return library function') {
-		    echo "test 2"
-            script {
-                def a = test_var.return_string()
-                echo a
+            for(plat in supportedPlatforms) {
+                echo plat
             }
-		}
-	}
+            for(ring in supportedRings) {
+                echo ring
+            }
+        }
+        
+    }
+	
+}
+
+def fillVariables() {
+    stage("test filling variables") {
+        supportedProjects = test_var.get_supported_projects()
+        supportedPlatforms = test_var.get_supported_platforms()
+        supportedRings = test_var.get_supported_rings()
+    }
+    
 }
