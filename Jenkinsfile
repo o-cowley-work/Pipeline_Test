@@ -1,4 +1,4 @@
-library('test_library')
+@Library('test_library') _ 
 
 
 pipeline {
@@ -11,6 +11,8 @@ pipeline {
 		    }
 			steps {
 				echo 'Doing a first thing'
+
+				echo test_var 
 				
 			}
 		}
