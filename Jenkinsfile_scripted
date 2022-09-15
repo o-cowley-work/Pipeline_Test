@@ -1,4 +1,5 @@
 @Library('test_library') _ 
+import main.test_class.Status 
 
 import groovy.transform.Field
 
@@ -6,9 +7,11 @@ import groovy.transform.Field
 @Field def supportedPlatforms = []
 @Field def supportedRings = []
 
+Status statusblock = new Status() 
 
+node ("Only Node") {
+    
 
-node {
     fillVariables()
     runPipeline() 
 }
@@ -44,6 +47,10 @@ def runPipeline() {
             }
         }
         
+    }
+
+    stage("testing statuses from library") {
+        echo statusblock.BUILD_RESULT_SKIPPED
     }
 	
 }
