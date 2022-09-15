@@ -3,7 +3,7 @@
 runPipeline() 
 
 def runPipeline() {
-    stages {
+    stage {
 		stage('Test library function') {
 			
 		    agent any
