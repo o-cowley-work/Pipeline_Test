@@ -9,7 +9,7 @@ import groovy.transform.Field
 
 Status statusblock = new Status() 
 
-node ("Only Node") {
+node {
     
 
     fillVariables()
