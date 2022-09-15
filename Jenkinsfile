@@ -1,3 +1,6 @@
+library('test_library')
+
+
 pipeline {
 	agent none
 	stages {
@@ -31,7 +34,7 @@ pipeline {
         			steps {
         				echo 'Ran this on the master'
         				
-        			}
+        			} 
     		    }
 		    }
 		}
@@ -59,6 +62,6 @@ pipeline {
 		}
 	}
 }
-		
-		
+
+
 		
