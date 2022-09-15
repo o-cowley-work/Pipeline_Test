@@ -1,12 +1,13 @@
 @Library('test_library') _ 
 
-runPipeline() 
+node {
+    runPipeline() 
+}
+
 
 def runPipeline() {
     stage {
 		stage('Test library function') {
-			
-		    agent any
 
 			steps {
 				echo 'Doing a first thing'
