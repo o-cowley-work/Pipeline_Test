@@ -1,0 +1,27 @@
+@Library('test_library') _ 
+
+runPipeline() 
+
+def runPipeline() {
+    stages {
+		stage('Test library function') {
+			
+		    agent any
+
+			steps {
+				echo 'Doing a first thing'
+
+				test_var.print_text()
+				
+			}
+		}
+		
+		stage('Run test return library function') {
+		    script {
+                def a = test_var.return_string()
+
+                echo a 
+            }
+		}
+	}
+}
