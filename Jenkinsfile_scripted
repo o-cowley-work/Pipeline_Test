@@ -1,4 +1,4 @@
-@Library('test_library') _ 
+
 
 node {
     runPipeline() 
@@ -8,21 +8,11 @@ node {
 def runPipeline() {
     stage {
 		stage('Test library function') {
-
-			steps {
-				echo 'Doing a first thing'
-
-				test_var.print_text()
-				
-			}
+            echo "test 1"
 		}
 		
 		stage('Run test return library function') {
-		    script {
-                def a = test_var.return_string()
-
-                echo a 
-            }
+		    echo "test 2"
 		}
 	}
 }
