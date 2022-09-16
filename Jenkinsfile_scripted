@@ -104,8 +104,8 @@ def fillVariables() {
 def runParallel() {
     Map toRun = [:]
 
-    toRun["StepA"] = {echo "Doing A"}
-    toRun["StebB"] = {echo "Doing B"}
+    toRun["StepA"] = node ("Windows_Node") {echo "Doing A"}
+    toRun["StebB"] = node ("built-in") {echo "Doing B"}
 
     return parallel(toRun)
 }
