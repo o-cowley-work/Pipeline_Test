@@ -12,7 +12,7 @@ import groovy.transform.Field
 node {
     fillVariables()
     runPipeline()
-    
+
     libResourceGrab()
 
 }
@@ -100,7 +100,13 @@ def fillVariables() {
 }
 
 def libResourceGrab() {
-    test_var.return_library_resource()
+    stage ("test resource grab") {
+        script {
+            test_var.return_library_resource()
+        }
+        
+    }
+    
 }
 
 
