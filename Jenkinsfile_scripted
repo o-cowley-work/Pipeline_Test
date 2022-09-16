@@ -9,7 +9,7 @@ import groovy.transform.Field
 
 @Field Status statusblock = new Status() 
 
-node {
+node ("built-in"){
     
 
     fillVariables()
@@ -36,20 +36,20 @@ def runPipeline() {
         }
     }
 
-    stage("testing the imports") {
-        script {
-            for(proj in supportedProjects) {
-                echo proj
-            }
-            for(plat in supportedPlatforms) {
-                echo plat
-            }
-            for(ring in supportedRings) {
-                echo ring
-            }
-        }
+    // stage("testing the imports") {
+    //     script {
+    //         for(proj in supportedProjects) {
+    //             echo proj
+    //         }
+    //         for(plat in supportedPlatforms) {
+    //             echo plat
+    //         }
+    //         for(ring in supportedRings) {
+    //             echo ring
+    //         }
+    //     }
         
-    }
+    // }
 
     stage("testing statuses from library") {
         echo statusblock.BUILD_RESULT_SKIPPED
@@ -79,13 +79,14 @@ def runPipeline() {
 def runParallelTest() {
     Map toRun = [:]
 
-    toRun["Outer A"] = {
-        echo "I'm about to start a parallel block"
-        runParallel()
+    toRun["Outer A"] = 
+        node ("built-in"){
+            echo "I'm about to start a parallel block"
+            runParallel()
         }
-    toRun["Outer B"] = {
-        echo "I'm not a parallel block"
-
+    toRun["Outer B"] = 
+        node ("Widows_Node") {
+            echo "I'm not a parallel block"
         }
 
     parallel(toRun)
