@@ -51,6 +51,11 @@ def runPipeline() {
 
     stage("testing statuses from library") {
         echo statusblock.BUILD_RESULT_SKIPPED
+        echo "Testing the vars method of getting status"
+        script {
+            echo status.GITHUB_COMMIT_STATUS_SUCCESS
+        }
+        
     }
 	
 }
