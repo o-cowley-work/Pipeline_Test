@@ -9,7 +9,7 @@ import groovy.transform.Field
 
 @Field Status statusblock = new Status() 
 
-node {
+node{
     fillVariables()
     runPipeline()
 
@@ -72,6 +72,23 @@ def runPipeline() {
             }
         }
     }
+
+    node("Windows_Node") {
+        stage("delegating down to agent to change string") {
+            echo statusblock.test_update
+            script {
+                statusblock.setString("Oliver")
+            }
+            echo statusblock.test_update
+        }  
+    }
+
+    node("built-in") {
+        stage("Checking on status string change") {
+            echo statusblock.test_update
+        }
+    }
+    
 	
 }
 
