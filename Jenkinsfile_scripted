@@ -57,6 +57,22 @@ def runPipeline() {
         }
         
     }
+
+    stage("Testing the evaluation of null and \"\"") {
+        script {
+            echo "" == false 
+            echo null == false
+            def test_string = ""
+            def test_null = null
+            if (test_string) {
+                echo "empty string evaluated to false"
+            }
+
+            if (test_null) {
+                echo "null evaluated to false"
+            }
+        }
+    }
 	
 }
 
