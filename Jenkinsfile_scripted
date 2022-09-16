@@ -85,7 +85,7 @@ def runParallelTest() {
             runParallel()
         }
     toRun["Outer B"] = 
-        node ("Widows_Node") {
+        node ("Windows_Node") {
             echo "I'm not a parallel block"
         }
 
