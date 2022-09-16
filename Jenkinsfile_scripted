@@ -15,9 +15,10 @@ node ("built-in"){
     fillVariables()
     runPipeline() 
 
-    runParallelTest()
+    
 }
 
+runParallelTest()
 
 def runPipeline() {
     
@@ -80,7 +81,7 @@ def runParallelTest() {
     Map toRun = [:]
 
     toRun["Outer A"] = 
-        node ("built-in"){
+        node ("built-in") {
             echo "I'm about to start a parallel block"
             runParallel()
         }
