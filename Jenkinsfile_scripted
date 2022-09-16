@@ -10,12 +10,11 @@ import groovy.transform.Field
 @Field Status statusblock = new Status() 
 
 node {
-    
-
     fillVariables()
-    runPipeline() 
+    runPipeline()
+    def a = getFilePath()
+    echo a 
 
-    runParallelTest()
 }
 
 
@@ -98,6 +97,10 @@ def fillVariables() {
         supportedRings = test_var.get_supported_rings()
     }
     
+}
+
+def getFilePath() {
+    return libraryResource("/test_text_docs/test_filepath.txt")
 }
 
 
