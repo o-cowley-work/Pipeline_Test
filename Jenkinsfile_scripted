@@ -79,8 +79,14 @@ def runPipeline() {
 def runParallelTest() {
     Map toRun = [:]
 
-    toRun["Outer A"] = {runParallel()}
-    toRun["Outer B"] = {runParallel()}
+    toRun["Outer A"] = {
+        echo "I'm about to start a parallel block"
+        runParallel()
+        }
+    toRun["Outer B"] = {
+        echo "I'm not a parallel block"
+
+        }
 
     parallel(toRun)
 }
