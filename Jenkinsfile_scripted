@@ -64,11 +64,11 @@ def runPipeline() {
         script {
             def test_string = ""
             def test_null = null
-            if (test_string) {
+            if (!test_string) {
                 echo "empty string evaluated to false"
             }
 
-            if (test_null) {
+            if (!test_null) {
                 echo "null evaluated to false"
             }
         }
@@ -79,8 +79,8 @@ def runPipeline() {
 def runParallelTest() {
     Map toRun = [:]
 
-    toRun["Outer A"] = runParallel()
-    toRun["Outer B"] = runParallel()
+    toRun["Outer A"] = {runParallel()}
+    toRun["Outer B"] = {runParallel()}
 
     parallel(toRun)
 }
@@ -101,6 +101,5 @@ def runParallel() {
     toRun["StepA"] = {echo "Doing A"}
     toRun["StebB"] = {echo "Doing B"}
 
-    parallel(toRun)
-
+    return parallel(toRun)
 }
