@@ -14,6 +14,8 @@ node {
 
     fillVariables()
     runPipeline() 
+
+    runParallelTest()
 }
 
 
@@ -76,6 +78,15 @@ def runPipeline() {
 	
 }
 
+def runParallelTest() {
+    Map toRun = [:]
+
+    toRun["Outer A"] = runParallel()
+    toRun["Outer B"] = runParallel()
+
+    parallel(toRun)
+}
+
 def fillVariables() {
     stage("test filling variables") {
         supportedProjects = test_var.get_supported_projects()
@@ -83,4 +94,15 @@ def fillVariables() {
         supportedRings = test_var.get_supported_rings()
     }
     
+}
+
+
+def runParallel() {
+    Map toRun = [:]
+
+    toRun["StepA"] = {echo "Doing A"}
+    toRun["StebB"] = {echo "Doing B"}
+
+    parallel(toRun)
+
 }
