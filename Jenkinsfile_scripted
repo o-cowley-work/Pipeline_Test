@@ -30,9 +30,7 @@ def runPipeline() {
 
             additional_scripts.doStuff("OLIVER")
         }
-        def additional_scripts = load 'additional_scripts.groovy'
-
-        additional_scripts.doStuff("OLIVER")
+        echo env.WORKSPACE
     }
     
     stage('Run test return library function') {
