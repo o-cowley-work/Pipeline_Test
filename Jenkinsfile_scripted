@@ -4,8 +4,6 @@
 import groovy.transform.Field
 
 
-
-
 @Field def supportedProjects = []
 @Field def supportedPlatforms = []
 @Field def supportedRings = []
@@ -32,6 +30,9 @@ def runPipeline() {
 
             additional_scripts.doStuff("OLIVER")
         }
+        def additional_scripts = load 'additional_scripts.groovy'
+
+        additional_scripts.doStuff("OLIVER")
     }
     
     stage('Run test return library function') {
