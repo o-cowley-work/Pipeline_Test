@@ -1,13 +1,13 @@
 @Library('Scoped_Library') _ 
-import Status 
+ 
 
-import groovy.transform.Field
+
 
 @Field def supportedProjects = []
 @Field def supportedPlatforms = []
 @Field def supportedRings = []
 
-@Field Status statusblock = new Status() 
+
 
 node{
     fillVariables()
@@ -51,7 +51,7 @@ def runPipeline() {
     }
 
     stage("testing statuses from library") {
-        echo statusblock.BUILD_RESULT_SKIPPED
+        echo status.BUILD_RESULT_SKIPPED
         echo "Testing the vars method of getting status"
         script {
             echo status.GITHUB_COMMIT_STATUS_SUCCESS
@@ -73,19 +73,19 @@ def runPipeline() {
         }
     }
 
-    node("Windows_Node") {
-        stage("delegating down to agent to change string") {
-            echo statusblock.test_update
-            script {
-                statusblock.setString("Oliver")
-            }
-            echo statusblock.test_update
-        }  
-    }
+    // node("Windows_Node") {
+    //     stage("delegating down to agent to change string") {
+    //         echo statusblock.test_update
+    //         script {
+    //             statusblock.setString("Oliver")
+    //         }
+    //         echo statusblock.test_update
+    //     }  
+    // }
 
     node("built-in") {
         stage("Checking on status string change") {
-            echo statusblock.test_update
+            echo status.test_update
         }
     }
     
