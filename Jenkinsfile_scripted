@@ -27,8 +27,8 @@ def runPipeline() {
         echo "test 1"
         script {
             test_var.print_text()
-            
-            additional_scripts = load('additional_scripts.groovy')
+
+            additional_scripts = load('./additional_scripts.groovy')
 
             additional_scripts.build("OLIVER")
         }
