@@ -1,5 +1,5 @@
 @Library('Scoped_Library') _ 
-import main.test_class.Status 
+import Status 
 
 import groovy.transform.Field
 
