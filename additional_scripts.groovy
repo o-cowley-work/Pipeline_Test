@@ -4,4 +4,4 @@ def build(String arg1) {
         """
 }
 
-return this
+return this;
