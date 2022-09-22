@@ -3,3 +3,5 @@ def build(String arg1) {
         echo "from build function : ${arg1}"
         """
 }
+
+return this
