@@ -85,7 +85,10 @@ def runPipeline() {
 
     node("built-in") {
         stage("Checking on status string change") {
-            echo status.test_update
+            script {
+                echo status.test_update
+            }
+            
         }
     }
     
