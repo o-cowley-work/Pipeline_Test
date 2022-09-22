@@ -26,9 +26,6 @@ def runPipeline() {
         script {
             test_var.print_text()
 
-            def additional_scripts = load 'additional_scripts.groovy'
-
-            additional_scripts.doStuff("OLIVER")
         }
         echo env.WORKSPACE
     }
