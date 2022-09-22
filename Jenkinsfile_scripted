@@ -1,7 +1,7 @@
 @Library('Scoped_Library') _ 
- 
 
 
+import groovy.transform.Field
 
 @Field def supportedProjects = []
 @Field def supportedPlatforms = []
