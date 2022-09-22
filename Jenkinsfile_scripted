@@ -26,8 +26,10 @@ def runPipeline() {
         script {
             test_var.print_text()
 
+            echo pwd()
+
         }
-        echo env.WORKSPACE
+        
     }
     
     stage('Run test return library function') {
