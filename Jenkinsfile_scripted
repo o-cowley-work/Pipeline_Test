@@ -49,7 +49,8 @@ def runPipeline() {
     }
 
     stage("Testing a class import") {
-        echo "$Additional.StaticInfo.TEST_WORDS"
+        def obj = new StaticInfo()
+        echo "$obj.TEST_WORDS"
     }
     
     
