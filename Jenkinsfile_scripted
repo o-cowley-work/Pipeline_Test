@@ -15,7 +15,7 @@ import groovy.transform.Field
 
 
 
-node{
+node("Windows_Node"){
     
 
     checkoutFromGit()
@@ -71,6 +71,13 @@ def runPipeline() {
     stage("Testing a class import") {
         echo getScript().TEST_ME
         echo getScript().TEST_ME2   
+    }
+
+
+    stage("Agent access to controller variables") {
+        
+        script_loaded.doStuff("IM ON AN AGENT")
+        
     }
 }
 
