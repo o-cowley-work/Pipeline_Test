@@ -35,10 +35,10 @@ def checkoutFromGit() {
 def runPipeline() {
     stage("Check if things are there") {
         echo "The current directory from env variable is: $env.WORKSPACE"
+        
         def work = pwd()
         echo "This is the current director from pwd(): $work"
-        echo "This is the sh printenv return"
-        sh 'printenv'
+
         def files = findFiles()
         echo "This is the list of files: $files"
     }
