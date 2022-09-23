@@ -28,11 +28,12 @@ node{
 
 }
 
-def getScript() {
+def Script getScript() {
     if (loaded_static == null) {
         loaded_static = load "${pwd()}\\Additional\\StaticInfo.groovy"
     }
     echo "Static Info class loaded"
+    return loaded_static
 }
 
 
