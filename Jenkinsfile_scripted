@@ -4,141 +4,89 @@
 import groovy.transform.Field
 
 
-@Field def supportedProjects = []
-@Field def supportedPlatforms = []
-@Field def supportedRings = []
+// @Field def supportedProjects = []
+// @Field def supportedPlatforms = []
+// @Field def supportedRings = []
 
 
 
 node{
-    fillVariables()
+    checkoutFromGit()
+
     runPipeline()
 
-    libResourceGrab()
+}
 
+
+def checkoutFromGit() {
+    stage("Clone the build to use") {
+        checkout (poll: false, 
+            scm: [$class: 'GitSCM', 
+            branches: [[name: '*/main']], 
+            extensions: [[$class: 'CleanBeforeCheckout']], 
+            userRemoteConfigs: [[credentialsId: '6859c06b-0809-4875-b655-28d3d5d4b152', 
+                                url: 'https://github.com/oliverIwork/Pipeline_Test.git']]]
+        )
+    }
+    
 }
 
 
 def runPipeline() {
-    
-    stage('Test library and import function') {
-        echo "test 1"
-        script {
-            test_var.print_text()
-
-
-        }
-        
+    stage("Check if things are there") {
+        echo "The current directory from env variable is: $env.WORKSPACE"
+        def work = pwd()
+        echo "This is the current director from pwd(): $work"
+        echo "This is the sh printenv return"
+        sh 'printenv'
+        def files = findFiles()
+        echo "This is the list of files: $files"
     }
     
-    stage('Run test return library function') {
-        echo "test 2"
-        script {
-            def a = test_var.return_string()
-            echo a
-        }
-    }
-
-    stage("testing the imports") {
-        script {
-            for(proj in supportedProjects) {
-                echo proj
-            }
-            for(plat in supportedPlatforms) {
-                echo plat
-            }
-            for(ring in supportedRings) {
-                echo ring
-            }
-        }
-        
-    }
-
-    stage("testing statuses from library") {
-        echo status.BUILD_RESULT_SKIPPED
-        echo "Testing the vars method of getting status"
-        script {
-            echo status.GITHUB_COMMIT_STATUS_SUCCESS
-        }
-        
-    }
-
-    stage("Testing the evaluation of null and \"\"") {
-        script {
-            def test_string = ""
-            def test_null = null
-            if (!test_string) {
-                echo "empty string evaluated to false"
-            }
-
-            if (!test_null) {
-                echo "null evaluated to false"
-            }
-        }
-    }
-
-    // node("Windows_Node") {
-    //     stage("delegating down to agent to change string") {
-    //         echo statusblock.test_update
-    //         script {
-    //             statusblock.setString("Oliver")
-    //         }
-    //         echo statusblock.test_update
-    //     }  
-    // }
-
-    node("built-in") {
-        stage("Checking on status string change") {
-            script {
-                test_var.print_text()
-            }
-            
-        }
-    }
     
 	
 }
 
-def runParallelTest() {
-    Map toRun = [:]
+// def runParallelTest() {
+//     Map toRun = [:]
 
-    toRun["Outer A"] = {
-        echo "I'm about to start a parallel block"
-        runParallel()
-        }
-    toRun["Outer B"] = {
-        echo "I'm not a parallel block"
+//     toRun["Outer A"] = {
+//         echo "I'm about to start a parallel block"
+//         runParallel()
+//         }
+//     toRun["Outer B"] = {
+//         echo "I'm not a parallel block"
 
-        }
+//         }
 
-    parallel(toRun)
-}
+//     parallel(toRun)
+// }
 
-def fillVariables() {
-    stage("test filling variables") {
-        supportedProjects = test_var.get_supported_projects()
-        supportedPlatforms = test_var.get_supported_platforms()
-        supportedRings = test_var.get_supported_rings()
-    }
+// def fillVariables() {
+//     stage("test filling variables") {
+//         supportedProjects = test_var.get_supported_projects()
+//         supportedPlatforms = test_var.get_supported_platforms()
+//         supportedRings = test_var.get_supported_rings()
+//     }
     
-}
+// }
 
-def libResourceGrab() {
-    stage ("test resource grab") {
-        script {
-            test_var.return_library_resource()
-        }
+// def libResourceGrab() {
+//     stage ("test resource grab") {
+//         script {
+//             test_var.return_library_resource()
+//         }
         
-    }
+//     }
     
-}
+// }
 
 
-def runParallel() {
-    Map toRun = [:]
+// def runParallel() {
+//     Map toRun = [:]
 
-    toRun["StepA"] = {node ("Windows_Node") {echo "Doing A"}}
-    toRun["StebB"] = {node ("built-in") {echo "Doing B"}}
+//     toRun["StepA"] = {node ("Windows_Node") {echo "Doing A"}}
+//     toRun["StebB"] = {node ("built-in") {echo "Doing B"}}
 
-    return parallel(toRun)
-}
+//     return parallel(toRun)
+// }
