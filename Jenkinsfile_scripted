@@ -3,6 +3,8 @@
 
 import groovy.transform.Field
 
+import Additional.StaticInfo
+
 
 // @Field def supportedProjects = []
 // @Field def supportedPlatforms = []
@@ -44,6 +46,10 @@ def runPipeline() {
 
         script_loaded.doStuff("OOOOOOLIVER")
 
+    }
+
+    stage("Testing a class import") {
+        echo "$StaticInfo.TEST_WORDS"
     }
     
     
