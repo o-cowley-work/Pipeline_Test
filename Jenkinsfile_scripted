@@ -3,7 +3,7 @@
 
 import groovy.transform.Field
 
-import Pipeline_Test.Additional.StaticInfo
+import Additional.StaticInfo
 
 
 // @Field def supportedProjects = []
@@ -49,8 +49,12 @@ def runPipeline() {
     }
 
     stage("Testing a class import") {
+        script {
+            StaticInfo si = new StaticInfo();
+            echo "$si.TEST_WORDS"
+        }
         
-        echo "$StaticInfoA.TEST_WORDS"
+        
     }
     
     

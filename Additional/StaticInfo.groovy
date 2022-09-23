@@ -1,9 +1,6 @@
 package Additional;
 
-class StaticInfoA {
+class StaticInfo {
     public static final String TEST_WORDS = "WORDS WORDS WORD A";
 }
 
-class StaticInfoB {
-    public static final String TEST_WORDS = "WORDS WORDS WORD B";
-}
