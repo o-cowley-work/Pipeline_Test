@@ -4,7 +4,7 @@ def doStuff(String arg1) {
         }
 
         stage ("Checking visibility of variables from the parent script") {
-                echo loaded_static.TEST_ME2
+                echo getScript().TEST_ME2
                 echo "I did get to that variable"
         }
         
