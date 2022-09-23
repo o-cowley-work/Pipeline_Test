@@ -1,6 +1,13 @@
 
-public static final String TEST_WORDS = "WORDS WORDS WORD A";
+import groovy.transform.Field
 
 
-return this
+
+@Field public static final String TEST_WORDS = "WORDS WORDS WORD A";
+
+
+
+
+
+return this;
 
