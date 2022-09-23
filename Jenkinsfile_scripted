@@ -39,8 +39,8 @@ def runPipeline() {
         def work = pwd()
         echo "This is the current director from pwd(): $work"
 
-        def files = findFiles()
-        echo "This is the list of files: $files"
+        final foundFiles = sh(script: 'ls -1 dockerfiles', returnStdout: true).split()
+        echo "This is the list of files: $foundFiles"
     }
     
     
