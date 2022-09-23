@@ -39,8 +39,9 @@ def runPipeline() {
         def work = pwd()
         echo "This is the current director from pwd(): $work"
 
-        final foundFiles = sh(script: 'ls -1 dockerfiles', returnStdout: true).split()
-        echo "This is the list of files: $foundFiles"
+        echo "Testing a load of the script lib"
+        def scripts = load ("$work/Additional/additional_scripts.groovy")
+        
     }
     
     
