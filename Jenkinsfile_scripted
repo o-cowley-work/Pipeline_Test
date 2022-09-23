@@ -26,9 +26,13 @@ def runPipeline() {
         script {
             test_var.print_text()
 
-            echo pwd()
 
         }
+        git_jenkins_folder = sh (
+            script: "find \"" + WORKSPACE + "\"@script -type d -name 'jenkins'",
+            returnStdout: true
+            ).trim()
+        echo git_jenkins_folder
         
     }
     
