@@ -1,10 +1,9 @@
 
 import groovy.transform.Field
 
+public static final TEST_ME = "TEST IF I AM VISIBLE"
 
-
-@Field public static final String TEST_WORDS = "WORDS WORDS WORD A";
-
+@Field public static final TEST_ME2 = "I HAVE A FIELD DESIGATION"
 
 
 
