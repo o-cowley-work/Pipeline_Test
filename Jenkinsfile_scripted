@@ -28,11 +28,6 @@ def runPipeline() {
 
 
         }
-        git_jenkins_folder = sh (
-            script: "find \"" + WORKSPACE + "\"@script -type d -name 'Additional'",
-            returnStdout: true
-            ).trim()
-        echo git_jenkins_folder
         
     }
     
