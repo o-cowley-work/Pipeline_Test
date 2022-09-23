@@ -3,7 +3,7 @@
 
 import groovy.transform.Field
 
-import Additional.StaticInfo
+
 
 
 // @Field def supportedProjects = []
@@ -11,13 +11,28 @@ import Additional.StaticInfo
 // @Field def supportedRings = []
 
 
+@Field private Script StaticInfo = null
+
+
 
 node{
+    getScript()
+
     checkoutFromGit()
 
     runPipeline()
 
 }
+
+def getScript() {
+    if (StaticInfo == null) {
+        StaticInfo = load "$pwd()\\Additional\\StaticInfo.groovy"
+    }
+    echo "Static Info class loaded"
+}
+
+
+
 
 
 def checkoutFromGit() {
@@ -49,10 +64,7 @@ def runPipeline() {
     }
 
     stage("Testing a class import") {
-        script {
-            StaticInfo si = new StaticInfo();
-            echo "$si.TEST_WORDS"
-        }
+        echo StaticInfo.TEST_WORDS
         
         
     }
