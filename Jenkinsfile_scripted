@@ -41,7 +41,9 @@ def runPipeline() {
 
         echo "Testing a load of the script lib"
         def scripts = load ("$work/Additional/additional_scripts.groovy")
-        
+
+        scripts.doStuff("OOOOOOLIVER")
+
     }
     
     
