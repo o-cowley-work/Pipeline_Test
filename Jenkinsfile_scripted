@@ -11,7 +11,7 @@ import groovy.transform.Field
 // @Field def supportedRings = []
 
 
-@Field private Script StaticInfo = null
+@Field private Script loaded_static = null
 
 
 
@@ -29,8 +29,8 @@ node{
 }
 
 def getScript() {
-    if (StaticInfo == null) {
-        StaticInfo = load "${pwd()}\\Additional\\StaticInfo.groovy"
+    if (loaded_static == null) {
+        loaded_static = load "${pwd()}\\Additional\\StaticInfo.groovy"
     }
     echo "Static Info class loaded"
 }
@@ -68,7 +68,7 @@ def runPipeline() {
     }
 
     stage("Testing a class import") {
-        echo StaticInfo.TEST_WORDS   
+        echo loaded_static.TEST_WORDS   
     }
 }
 
