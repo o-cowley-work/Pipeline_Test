@@ -40,9 +40,9 @@ def runPipeline() {
         echo "This is the current director from pwd(): $work"
 
         echo "Testing a load of the script lib"
-        def scripts = load ("$work/Additional/additional_scripts.groovy")
+        def script_loaded = load ("$work/Additional/additional_scripts.groovy")
 
-        scripts.doStuff("OOOOOOLIVER")
+        script_loaded.doStuff("OOOOOOLIVER")
 
     }
     
