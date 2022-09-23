@@ -3,7 +3,7 @@
 
 import groovy.transform.Field
 
-import Additional.StaticInfo
+import Additional.StaticInfo.*
 
 
 // @Field def supportedProjects = []
