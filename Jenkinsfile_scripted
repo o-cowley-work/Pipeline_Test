@@ -16,9 +16,11 @@ import groovy.transform.Field
 
 
 node{
-    getScript()
+    
 
     checkoutFromGit()
+
+    getScript()
 
     runPipeline()
 
