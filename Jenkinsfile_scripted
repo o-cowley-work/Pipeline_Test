@@ -26,7 +26,7 @@ node{
 
 def getScript() {
     if (StaticInfo == null) {
-        StaticInfo = load "$pwd()\\Additional\\StaticInfo.groovy"
+        StaticInfo = load "${pwd()}\\Additional\\StaticInfo.groovy"
     }
     echo "Static Info class loaded"
 }
