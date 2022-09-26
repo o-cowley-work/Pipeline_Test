@@ -14,9 +14,8 @@ import groovy.transform.Field
 @Field private Script loaded_static = null
 @Field private Script script_loaded = null
 
-properties([parameters(
-				[string(name: 'PROJECT_NAMES', defaultValue: env.PROJECT_NAMES, description: "Project name(s), available projects: ${env.PROJECT_NAMES} or ALL")])])
 
+runProps()
 
 node(){
     
@@ -97,6 +96,13 @@ def cleanUpWorkspace() {
     stage("Cleaning up workspace") {
         cleanWs()
     }
+}
+
+
+def runProps() {
+    properties([parameters(
+				[string(name: 'PROJECT_NAMES', defaultValue: env.PROJECT_NAMES, description: "Project name(s), available projects: ${env.PROJECT_NAMES} or ALL"),
+                    string(name: 'ANOTHER_THING', defaultValue: env.ANOTHER_THING, description: "SOME OTHER THING: ${env.ANOTHER_THING} or ALL")])])
 }
 
 // def runParallelTest() {
