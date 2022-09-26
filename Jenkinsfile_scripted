@@ -25,13 +25,15 @@ node(){
 
     getScript()
 
+    script_loaded.runProps2("NOT OLIVER")
+    
     runPipeline()
 
     cleanUpWorkspace()
 
 }
 
-script_loaded.runProps2("NOT OLIVER")
+
 
 def Script getStatic() {
     if (loaded_static == null) {
