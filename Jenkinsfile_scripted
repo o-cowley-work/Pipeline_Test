@@ -15,11 +15,12 @@ import groovy.transform.Field
 @Field private Script script_loaded = null
 
 properties([parameters(
-				[string(name: 'PROJECT_NAMES', defaultValue: env.PROJECT_NAMES, description: "Project name(s), available projects: " + projects.join(', ') + " or ALL")])])
+				[string(name: 'PROJECT_NAMES', defaultValue: env.PROJECT_NAMES, description: "Project name(s), available projects: ${env.PROJECT_NAMES} or ALL")])])
 
 
 node(){
     
+    echo env.PROJECT_NAMES
 
     checkoutFromGit()
 
