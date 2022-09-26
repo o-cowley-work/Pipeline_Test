@@ -26,7 +26,7 @@ node(){
     getScript()
 
     script_loaded.runProps2("NOT OLIVER")
-    
+
     runPipeline()
 
     cleanUpWorkspace()
@@ -45,7 +45,7 @@ def Script getStatic() {
 
 def Script getScript() {
     if (script_loaded == null) {
-        script_loaded = load "${pwd()}\\Additional\\StaticInfo.groovy"
+        script_loaded = load "${pwd()}\\Additional\\additional_scripts.groovy"
     }
     echo "Script class loaded"
     return script_loaded
