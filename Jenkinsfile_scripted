@@ -12,10 +12,13 @@ import groovy.transform.Field
 
 
 @Field private Script loaded_static = null
+@Field private Script script_loaded = null
+
+properties([parameters(
+				[string(name: 'PROJECT_NAMES', defaultValue: env.PROJECT_NAMES, description: "Project name(s), available projects: " + projects.join(', ') + " or ALL")])])
 
 
-
-node("Windows_Node"){
+node(){
     
 
     checkoutFromGit()
@@ -28,12 +31,20 @@ node("Windows_Node"){
 
 }
 
-def Script getScript() {
+def Script getStatic() {
     if (loaded_static == null) {
         loaded_static = load "${pwd()}\\Additional\\StaticInfo.groovy"
     }
     echo "Static Info class loaded"
     return loaded_static
+}
+
+def Script getScript() {
+    if (script_loaded == null) {
+        script_loaded = load "${pwd()}\\Additional\\StaticInfo.groovy"
+    }
+    echo "Script class loaded"
+    return script_loaded
 }
 
 
@@ -62,7 +73,7 @@ def runPipeline() {
         echo "This is the current director from pwd(): $work"
 
         echo "Testing a load of the script lib"
-        def script_loaded = load ("$work/Additional/additional_scripts.groovy")
+        script_loaded = load ("$work/Additional/additional_scripts.groovy")
 
         script_loaded.doStuff("OOOOOOLIVER")
 
