@@ -31,7 +31,7 @@ node(){
 
 }
 
-runProps("NOT OLIVER")
+script_loaded.runProps2("NOT OLIVER")
 
 def Script getStatic() {
     if (loaded_static == null) {
