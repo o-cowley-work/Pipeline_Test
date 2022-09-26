@@ -81,7 +81,7 @@ def runPipeline() {
     }
 
     stage("Testing a class import") {
-        echo loaded_static.TEST_ME
+        echo getStatic().TEST_ME
         echo loaded_static.TEST_ME2   
     }
 
